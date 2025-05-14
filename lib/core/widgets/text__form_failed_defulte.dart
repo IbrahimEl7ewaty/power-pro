@@ -3,29 +3,29 @@ import 'package:flutter_svg/svg.dart';
 import 'package:power_pro_app/core/utils/color/app_color.dart';
 import 'package:power_pro_app/core/utils/icons/app_icons.dart';
 
-class GradientTextField extends StatefulWidget {
+class TextFormFailedDefulte extends StatefulWidget {
   final String hintText;
   final double sizeHint;
   final String? icon;
   final bool isPassword;
-  final TextEditingController controller;
-  final String? Function(String?)? validator;
+  final TextEditingController? controller;
+  final bool colorText;
 
-  const GradientTextField({
+  const TextFormFailedDefulte({
     Key? key,
-    required this.controller,
     this.hintText = '',
     this.sizeHint = 10.48,
     this.icon,
     this.isPassword = false,
-    this.validator,
+    this.controller,
+    this.colorText = true,
   }) : super(key: key);
 
   @override
-  State<GradientTextField> createState() => _GradientTextFieldState();
+  State<TextFormFailedDefulte> createState() => _TextFormFailedDefulteState();
 }
 
-class _GradientTextFieldState extends State<GradientTextField> {
+class _TextFormFailedDefulteState extends State<TextFormFailedDefulte> {
   bool _obscureText = true;
 
   @override
@@ -46,8 +46,9 @@ class _GradientTextFieldState extends State<GradientTextField> {
         ),
         child: TextFormField(
           controller: widget.controller,
+
           obscureText: widget.isPassword ? _obscureText : false,
-          validator: widget.validator,
+
           style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
@@ -58,7 +59,8 @@ class _GradientTextFieldState extends State<GradientTextField> {
             hintStyle: TextStyle(
               fontSize: widget.sizeHint,
               fontWeight: FontWeight.w400,
-              color: AppColor.textColor,
+              color:
+                  widget.colorText ? AppColor.textColor : AppColor.primaryWhite,
             ),
             border: InputBorder.none,
             suffixIcon:

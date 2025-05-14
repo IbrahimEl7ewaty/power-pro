@@ -5,16 +5,29 @@ class TextDefulte extends StatelessWidget {
   final double size;
   final FontWeight fontWeight;
   final Color color;
-  const TextDefulte({super.key, required this.data, required this.size, required this.fontWeight, required this.color});
+  final int? maxLines;
+  const TextDefulte({
+    super.key,
+    required this.data,
+    required this.size,
+    required this.fontWeight,
+    required this.color,
+    this.maxLines,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Text(data,
-        style: TextStyle(
-      fontSize: size,
-      fontWeight: fontWeight,
-      color: color,
-      fontFamily: 'Satoshi',
-    ));
+    return Text(
+      data,
+      maxLines: maxLines,
+
+      style: TextStyle(
+        fontSize: size,
+        fontWeight: fontWeight,
+        color: color,
+        fontFamily: 'Satoshi',
+        decoration: TextDecoration.none,
+      ),
+    );
   }
 }

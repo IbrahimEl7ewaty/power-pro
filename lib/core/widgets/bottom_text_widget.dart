@@ -2,36 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:power_pro_app/core/utils/color/app_color.dart';
 import 'package:power_pro_app/core/widgets/text_defulte.dart';
 
-class BottomText extends StatelessWidget {
+class BottomTextWidget extends StatelessWidget {
   final String data;
   final double size;
   final FontWeight fontWeight;
   final Color color;
-  final bool isLoading;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
+  final double sizeBox;
 
-  const BottomText({
+  const BottomTextWidget({
     super.key,
-    required this.isLoading,
     required this.onPressed,
     required this.data,
     required this.size,
     required this.fontWeight,
     required this.color,
+    required this.sizeBox,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: 50,
+      width: sizeBox,
+      height: 40,
       child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
@@ -40,18 +38,15 @@ class BottomText extends StatelessWidget {
             gradient: const LinearGradient(
               colors: [AppColor.blueBlack, AppColor.blueWhite],
             ),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(5),
           ),
           child: Center(
-            child:
-                isLoading
-                    ? const CircularProgressIndicator(color: Colors.white)
-                    : TextDefulte(
-                      data: data,
-                      size: size,
-                      fontWeight: fontWeight,
-                      color: color,
-                    ),
+            child: TextDefulte(
+              data: data,
+              size: size,
+              fontWeight: fontWeight,
+              color: color,
+            ),
           ),
         ),
       ),
