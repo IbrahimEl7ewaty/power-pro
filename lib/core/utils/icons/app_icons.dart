@@ -12,5 +12,20 @@ abstract class AppIcons {
   static const String contactUs = '${pathLink}contact_us.svg';
   static const String more = '${pathLink}more.svg';
   static const String iconPlay = '${pathLink}icon_play.svg';
-  
+  static const String arrBack = '${pathLink}arr_back.svg';
+  static const String call = '${pathLink}call.svg';
+  static const String email = '${pathLink}email.svg';
+  static const String location = '${pathLink}location.svg';
+  static const String instagram = '${pathLink}instagram.svg';
+  static const String facebook = '${pathLink}facebook.svg';
+  static const String twitter = '${pathLink}twitter.svg';
+  static const String showMore = '${pathLink}show_more.svg';
+  static const String showLess = '${pathLink}show_less.svg';
+  static const String user = '${pathLink}user.svg';
+  static const String video = '${pathLink}video.svg';
+  static const String energySources = '${pathLink}energy_sources.svg';
+  static const String energySavingTips = '${pathLink}energy_saving_tips.svg';
+  static const String close = '${pathLink}close.svg';
+  static const String edit = '${pathLink}edit.svg';
+  static const String logout = '${pathLink}logout.svg';
 }

@@ -9,9 +9,12 @@ import 'package:power_pro_app/core/widgets/sizedbox_height.dart';
 import 'package:power_pro_app/core/widgets/sizedbox_width.dart';
 import 'package:power_pro_app/core/widgets/text__form_failed_defulte.dart';
 import 'package:power_pro_app/core/widgets/text_defulte.dart';
+import 'package:power_pro_app/main.dart';
 import 'package:power_pro_app/presentation/screens/auth/create_account_scareen/create_account.dart';
 import 'package:power_pro_app/presentation/screens/auth/forget_password_screen/forget_password.dart';
+import 'package:power_pro_app/presentation/screens/contact_us/contact_screen.dart';
 import 'package:power_pro_app/presentation/screens/home/home_screen.dart';
+import 'package:power_pro_app/presentation/screens/more/more_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -73,13 +76,11 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedboxHeight(h: 10),
 
-              // Remember password + forgot link
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      // static unchecked box
                       ContainerBoxIsChecked(
                         isChecked: false,
                         onTap: () {}, // no-op
@@ -110,16 +111,13 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               const SizedboxHeight(h: 20),
-
-              // Login button
               SizedBox(
                 width: double.infinity,
                 child: BottomTextVerify(
                   onPressed: () {
-                    // UI-only
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const HomeScreen()),
+                      MaterialPageRoute(builder: (_) => const MainScreen()),
                     );
                   },
                   data: 'Login',
@@ -130,12 +128,11 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedboxHeight(h: 20),
 
-              // Create account link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextDefulte(
-                    data: 'Don’t have an account?',
+                    data: "Don't have an account?",
                     size: 12,
                     fontWeight: FontWeight.w300,
                     color: AppColor.textColor,

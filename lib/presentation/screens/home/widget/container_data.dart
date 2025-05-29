@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:power_pro_app/core/utils/color/app_color.dart';
+import 'package:power_pro_app/core/widgets/box_learn_more.dart';
 import 'package:power_pro_app/core/widgets/line_border.dart';
 import 'package:power_pro_app/core/widgets/sizedbox_height.dart';
 import 'package:power_pro_app/core/widgets/text_bottom_widget.dart';
@@ -60,29 +61,7 @@ class ContainerData extends StatelessWidget {
               color: colorUnder,
             ),
             Spacer(),
-            IntrinsicWidth(
-              child: GestureDetector(
-                onTap: onPressed,
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: AppColor.offWhite,
-                    border: Border.all(color: AppColor.blue, width: 1),
-                  ),
-                  child: TextDefulte(
-                    data: 'Learn More',
-                    size: 8,
-                    fontWeight: FontWeight.w700,
-                    color: AppColor.blue,
-                  ),
-                ),
-              ),
-            ),
+            BoxLearnMore(onPressed: onPressed),
           ],
         ),
       ),

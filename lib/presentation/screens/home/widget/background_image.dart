@@ -3,14 +3,15 @@ import 'package:power_pro_app/core/utils/images/app_images.dart';
 
 class BackgroundImage extends StatelessWidget {
   final Widget? child;
-  const BackgroundImage({super.key, this.child});
+  final double? height;
+  const BackgroundImage({super.key, this.child, this.height});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
 
-      height: 580,
+      height: height ?? 580,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         image: DecorationImage(

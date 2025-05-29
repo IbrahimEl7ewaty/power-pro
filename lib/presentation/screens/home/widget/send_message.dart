@@ -7,90 +7,118 @@ import 'package:power_pro_app/core/widgets/text_defulte.dart';
 import 'package:power_pro_app/presentation/screens/home/widget/send_message_box.dart';
 
 class SendMessage extends StatelessWidget {
-  const SendMessage({super.key});
+  final double? height;
+  const SendMessage({super.key, this.height});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: AppColor.colorSendMessage,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextDefulte(
+          data: 'Get in touch',
+          size: 16,
+          fontWeight: FontWeight.w700,
+          color: AppColor.blue,
+        ),
+        SizedboxHeight(h: 10),
+        TextDefulte(
+          data: 'Reatch out to us for any help and inquiries',
+          size: 20,
+          fontWeight: FontWeight.w700,
+          color: AppColor.textColor,
+        ),
+        SizedboxHeight(h: 20),
+        TextDefulte(
+          data: 'Our friendly team would love to hear from you.',
+          size: 12,
+          fontWeight: FontWeight.w700,
+          color: AppColor.textColor,
+        ),
+        SizedboxHeight(h: 20),
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: AppColor.colorSendMessage,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextDefulte(
-                        data: 'Name',
-                        size: 10,
-                        fontWeight: FontWeight.w700,
-                        color: AppColor.white,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextDefulte(
+                            data: 'Name',
+                            size: 10,
+                            fontWeight: FontWeight.w700,
+                            color: AppColor.white,
+                          ),
+                          SizedboxHeight(h: 5),
+                          SendMessageBox(hint: 'Enter your name'),
+                        ],
                       ),
-                      SizedboxHeight(h: 5),
-                      SendMessageBox(hint: 'Enter your name'),
-                    ],
-                  ),
+                    ),
+                    SizedboxWidth(w: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextDefulte(
+                            data: 'Email',
+                            size: 10,
+                            fontWeight: FontWeight.w700,
+                            color: AppColor.white,
+                          ),
+                          SizedboxHeight(h: 5),
+                          SendMessageBox(hint: 'Enter your email'),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                SizedboxWidth(w: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextDefulte(
-                        data: 'Email',
-                        size: 10,
-                        fontWeight: FontWeight.w700,
-                        color: AppColor.white,
-                      ),
-                      SizedboxHeight(h: 5),
-                      SendMessageBox(hint: 'Enter your email'),
-                    ],
-                  ),
+                SizedboxHeight(h: 20),
+                TextDefulte(
+                  data: 'Company Name',
+                  size: 10,
+                  fontWeight: FontWeight.w700,
+                  color: AppColor.white,
+                ),
+                SizedboxHeight(h: 5),
+                SendMessageBox(hint: 'Enter your company name'),
+                SizedboxHeight(h: 20),
+                TextDefulte(
+                  data: 'Message',
+                  size: 10,
+                  fontWeight: FontWeight.w700,
+                  color: AppColor.white,
+                ),
+                SizedboxHeight(h: 5),
+                SendMessageBox(
+                  hint: 'Enter your message',
+                  height: 100,
+                  largText: true,
+                ),
+                SizedboxHeight(h: 20),
+                BottomTextWidget(
+                  onPressed: () {},
+                  data: 'Send message',
+                  size: 10,
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.primaryWhite,
+                  width: double.infinity,
                 ),
               ],
             ),
-            SizedboxHeight(h: 20),
-            TextDefulte(
-              data: 'Company Name',
-              size: 10,
-              fontWeight: FontWeight.w700,
-              color: AppColor.white,
-            ),
-            SizedboxHeight(h: 5),
-            SendMessageBox(hint: 'Enter your company name'),
-            SizedboxHeight(h: 20),
-            TextDefulte(
-              data: 'Message',
-              size: 10,
-              fontWeight: FontWeight.w700,
-              color: AppColor.white,
-            ),
-            SizedboxHeight(h: 5),
-            SendMessageBox(
-              hint: 'Enter your message',
-              height: 100,
-              largText: true,
-            ),
-            SizedboxHeight(h: 20),
-            BottomTextWidget(
-              onPressed: () {},
-              data: 'Send message',
-              size: 10,
-              fontWeight: FontWeight.w600,
-              color: AppColor.primaryWhite,
-              sizeBox: double.infinity,
-            ),
-          ],
+          ),
         ),
-      ),
+        SizedboxHeight(h: height ?? 0),
+      ],
     );
   }
 }

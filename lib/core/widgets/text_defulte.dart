@@ -6,6 +6,8 @@ class TextDefulte extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
   final int? maxLines;
+  final TextOverflow? overflow;
+  final TextAlign? textAlign;
   const TextDefulte({
     super.key,
     required this.data,
@@ -13,6 +15,8 @@ class TextDefulte extends StatelessWidget {
     required this.fontWeight,
     required this.color,
     this.maxLines,
+    this.overflow,
+    this.textAlign,
   });
 
   @override
@@ -20,6 +24,8 @@ class TextDefulte extends StatelessWidget {
     return Text(
       data,
       maxLines: maxLines,
+      overflow: overflow,
+      textAlign: textAlign ?? TextAlign.start,
 
       style: TextStyle(
         fontSize: size,

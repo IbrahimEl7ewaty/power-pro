@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:power_pro_app/core/utils/color/app_color.dart';
-import 'package:power_pro_app/core/utils/icons/app_icons.dart';
 import 'package:power_pro_app/core/utils/images/app_images.dart';
 import 'package:power_pro_app/core/widgets/bottom_text_widget.dart';
 import 'package:power_pro_app/core/widgets/container_color_widget.dart';
@@ -50,15 +49,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedboxHeight(h: 20),
                   BottomTextWidget(
-                    onPressed: () {},
+                    onPressed: () {
+                      currentIndexNotifier.value = 3;
+                    },
                     data: 'Contact Us',
                     size: 10,
                     fontWeight: FontWeight.w700,
                     color: AppColor.primaryWhite,
-                    sizeBox: 100,
+                    width: 100,
                   ),
                   SizedboxHeight(h: 20),
-                  Image.asset(AppImages.homePage),
+                  Image.asset(
+                    AppImages.homePage,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                   SizedboxHeight(h: 20),
                   TextDefulte(
                     data: 'Who are we?',
@@ -281,34 +286,12 @@ class HomeScreen extends StatelessWidget {
                           ),
                     ),
                   ),
-                  TextDefulte(
-                    data: 'Get in touch',
-                    size: 16,
-                    fontWeight: FontWeight.w700,
-                    color: AppColor.blue,
-                  ),
-                  SizedboxHeight(h: 10),
-                  TextDefulte(
-                    data: 'Reatch out to us for any help and inquiries',
-                    size: 20,
-                    fontWeight: FontWeight.w700,
-                    color: AppColor.textColor,
-                  ),
-                  SizedboxHeight(h: 20),
-                  TextDefulte(
-                    data: 'Our friendly team would love to hear from you.',
-                    size: 12,
-                    fontWeight: FontWeight.w700,
-                    color: AppColor.textColor,
-                  ),
-                  SizedboxHeight(h: 20),
+
                   SendMessage(),
-                  SizedboxHeight(h: 80),
                 ],
               ),
             ),
           ),
-          bottomNavigationBar: BottomBar(),
         ),
       ),
     );

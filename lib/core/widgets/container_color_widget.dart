@@ -3,7 +3,7 @@ import 'package:power_pro_app/core/utils/color/app_color.dart';
 
 class ContainerColorWidget extends StatelessWidget {
   final Widget child;
-  const ContainerColorWidget({super.key, required this.child});
+  const ContainerColorWidget({super.key, required this.child, });
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +12,7 @@ class ContainerColorWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
 
       decoration: const BoxDecoration(
+        
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

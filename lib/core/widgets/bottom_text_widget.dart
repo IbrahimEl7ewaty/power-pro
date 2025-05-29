@@ -8,7 +8,8 @@ class BottomTextWidget extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
   final VoidCallback onPressed;
-  final double sizeBox;
+  final double? width;
+  final double? height;
 
   const BottomTextWidget({
     super.key,
@@ -17,14 +18,14 @@ class BottomTextWidget extends StatelessWidget {
     required this.size,
     required this.fontWeight,
     required this.color,
-    required this.sizeBox,
+    this.width,
+    this.height,
   });
-
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: sizeBox,
-      height: 40,
+    return Container(
+      width: width ?? double.infinity, // لو مفيش width، خلي العرض يملأ الشاشة
+      height: height ?? 40,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
@@ -38,7 +39,7 @@ class BottomTextWidget extends StatelessWidget {
             gradient: const LinearGradient(
               colors: [AppColor.blueBlack, AppColor.blueWhite],
             ),
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Center(
             child: TextDefulte(
@@ -46,6 +47,7 @@ class BottomTextWidget extends StatelessWidget {
               size: size,
               fontWeight: fontWeight,
               color: color,
+              textAlign: TextAlign.center,
             ),
           ),
         ),
