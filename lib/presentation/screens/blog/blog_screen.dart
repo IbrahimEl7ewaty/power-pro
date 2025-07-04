@@ -6,7 +6,6 @@ import 'package:power_pro_app/core/widgets/line_border.dart';
 import 'package:power_pro_app/core/widgets/sizedbox_height.dart';
 import 'package:power_pro_app/core/widgets/text_defulte.dart';
 import 'package:power_pro_app/presentation/screens/blog/widget/data_blog.dart';
-import 'package:power_pro_app/presentation/screens/home/widget/bottom_bar.dart';
 import 'package:power_pro_app/presentation/screens/home/widget/send_message.dart';
 
 class BlogScreen extends StatelessWidget {
