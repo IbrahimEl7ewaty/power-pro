@@ -17,7 +17,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // تنفيذ التنقل بعد أول فريم يُرسم
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _navigateToLogin(context);
     });

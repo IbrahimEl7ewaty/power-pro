@@ -30,7 +30,7 @@ class ImprovingScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context);  // العودة للصفحة السابقة
                       },
                       icon: SvgPicture.asset(AppIcons.arrBack),
                     ),
@@ -41,9 +41,11 @@ class ImprovingScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // تحسين واجهة المستخدم من خلال الـ ImprovingWidget
                       ImprovingWidget(isShowMore: false, isLearningMore: false),
 
                       SizedboxHeight(h: 20),
+                      // عنوان الفقرة
                       TextDefulte(
                         data: "Avoid stress",
                         size: 16,
@@ -51,14 +53,16 @@ class ImprovingScreen extends StatelessWidget {
                         color: AppColor.textColor,
                       ),
                       SizedboxHeight(h: 20),
+                      // محتوى الفقرة
                       TextDefulte(
                         data:
-                            "Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus. Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus. Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus.",
+                            "Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus. Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus.",
                         size: 12,
                         fontWeight: FontWeight.w700,
                         color: AppColor.textColor,
                       ),
                       SizedboxHeight(h: 20),
+                      // وصف آخر
                       TextDefulte(
                         data:
                             "Discover articles and tips on energy conservation in our blog. We help you adopt a sustainable lifestyle with innovative solutions and news on renewable energy. Stay updated and learn how to protect the environment and reduce energy use.",
@@ -67,10 +71,12 @@ class ImprovingScreen extends StatelessWidget {
                         color: AppColor.textColor,
                       ),
                       SizedboxHeight(h: 20),
+                      // صورة من الـ AppImages
                       ContainerImage(image: AppImages.imageA),
                       SizedboxHeight(h: 20),
                       ContainerImage(image: AppImages.energySaving2),
                       SizedboxHeight(h: 20),
+                      // عنوان الفقرة مرة أخرى
                       TextDefulte(
                         data: "Avoid stress",
                         size: 16,
@@ -78,14 +84,16 @@ class ImprovingScreen extends StatelessWidget {
                         color: AppColor.textColor,
                       ),
                       SizedboxHeight(h: 20),
+                      // نص آخر من وصف
                       TextDefulte(
                         data:
-                            "Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus. Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus. Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus.",
+                            "Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus. Lorem ipsum dolor sit amet, consectetur. Quam urna varius dis vivamus pretium. Tellus feugiat eu commodo bibendum nulla id platea hac suspendisse. Vitae valibutior turpis semper dui altrices felis sit. Aut arco mitos penatibus.",
                         size: 12,
                         fontWeight: FontWeight.w700,
                         color: AppColor.textColor,
                       ),
                       SizedboxHeight(h: 20),
+                      // نص مع الزر
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -105,7 +113,7 @@ class ImprovingScreen extends StatelessWidget {
                         ],
                       ),
                       SizedboxHeight(h: 15),
-
+                      // ListView لعرض النصائح بشكل أفقي
                       SizedBox(
                         height: 260,
                         child: ListView.builder(
@@ -122,6 +130,7 @@ class ImprovingScreen extends StatelessWidget {
                         ),
                       ),
                       SizedboxHeight(h: 30),
+                      // إرسال رسالة أو التواصل
                       SendMessage(),
                     ],
                   ),

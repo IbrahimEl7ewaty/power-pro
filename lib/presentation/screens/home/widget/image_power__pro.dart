@@ -9,6 +9,7 @@ class ImagePowerPro extends StatelessWidget {
   final double sizeTitle;
   final FontWeight fontWeightTitle;
   final Color colorTitle;
+  final String? dataImage;
 
   final String dataDesc;
   final double sizeDesc;
@@ -24,6 +25,7 @@ class ImagePowerPro extends StatelessWidget {
     required this.sizeDesc,
     required this.fontWeightDesc,
     required this.colorDesc,
+    this.dataImage,
   });
 
   @override
@@ -41,7 +43,10 @@ class ImagePowerPro extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              child: Image.asset(AppImages.powerProImage, fit: BoxFit.cover),
+              child: Image.asset(
+                dataImage ?? AppImages.powerProImage,
+                fit: BoxFit.cover,
+              ),
             ),
             SizedboxHeight(h: 10),
             TextDefulte(

@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:power_pro_app/core/models/blog_model.dart';
 import 'package:power_pro_app/core/utils/color/app_color.dart';
+import 'package:power_pro_app/core/utils/images/app_images.dart';
 import 'package:power_pro_app/core/widgets/sizedbox_height.dart';
 import 'package:power_pro_app/core/widgets/sizedbox_width.dart';
 import 'package:power_pro_app/core/widgets/text_defulte.dart';
 import 'package:power_pro_app/presentation/screens/blog/widget/onTap_box_blog.dart';
 
 class DataBlog extends StatelessWidget {
+  final String id;
   final String title;
-  final String name;
-  final String time;
-  final String imageProfiel;
-  final String imageCover;
+  final String author;
+  final String date;
+  final String image;
+
   const DataBlog({
     super.key,
+    required this.id,
     required this.title,
-    required this.name,
-    required this.time,
-    required this.imageProfiel,
-    required this.imageCover,
+    required this.author,
+    required this.date,
+    required this.image,
   });
 
   @override
@@ -30,10 +33,10 @@ class DataBlog extends StatelessWidget {
             builder:
                 (context) => OntapBoxBlog(
                   title: title,
-                  name: name.toString(),
-                  time: time,
-                  imageProfiel: imageProfiel,
-                  imageCover: imageCover,
+                  name: author,
+                  time: date,
+                  imageProfiel: image, // تخصيص صورة الكاتب هنا
+                  imageCover: image, // استعراض صورة المقال
                 ),
           ),
         );
@@ -54,16 +57,17 @@ class DataBlog extends StatelessWidget {
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
-                  child: Image.asset(
-                    imageCover,
+                  child: Image.network(
+                    image, // عرض الصورة باستخدام URL
                     fit: BoxFit.cover,
                     width: double.infinity,
+                    height: 120, // تحديد ارتفاع الصورة
                   ),
                 ),
               ),
               SizedboxHeight(h: 10),
               TextDefulte(
-                data: title,
+                data: title, // عنوان المقال
                 size: 10,
                 fontWeight: FontWeight.w700,
                 color: AppColor.textColor,
@@ -77,11 +81,15 @@ class DataBlog extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(imageProfiel, width: 22, height: 22),
+                        child: Image.asset(
+                          AppImages.splash,
+                          width: 22,
+                          height: 22,
+                        ),
                       ),
                       SizedboxWidth(w: 3),
                       TextDefulte(
-                        data: name,
+                        data: author, // اسم الكاتب
                         size: 7,
                         fontWeight: FontWeight.w700,
                         color: AppColor.textColor,
@@ -89,7 +97,7 @@ class DataBlog extends StatelessWidget {
                     ],
                   ),
                   TextDefulte(
-                    data: time,
+                    data: date,
                     size: 7,
                     fontWeight: FontWeight.w700,
                     color: AppColor.blue,

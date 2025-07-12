@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:power_pro_app/core/utils/color/app_color.dart';
-
 class SendMessageBox extends StatelessWidget {
   final String? hint;
   final double? height;
   final bool? largText;
+  final TextEditingController? controller;
+
   const SendMessageBox({
     super.key,
     this.hint,
     this.height,
     this.largText = false,
+    this.controller,
   });
 
   @override
@@ -30,12 +32,11 @@ class SendMessageBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.24),
         ),
         child: TextFormField(
-          keyboardType:
-              (largText ?? false)
-                  ? TextInputType.multiline
-                  : TextInputType.text,
+          controller: controller,
+          keyboardType: (largText ?? false)
+              ? TextInputType.multiline
+              : TextInputType.text,
           maxLines: (largText ?? false) ? null : 1,
-
           style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,

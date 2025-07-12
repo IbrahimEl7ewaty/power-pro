@@ -14,4 +14,5 @@ abstract class AppImages {
   static const String imageA = 'assets/images/image_a.png';
   static const String energySources1 = 'assets/images/energy_sources1.png';
   static const String energyFan = 'assets/images/energy_fan.png';
+  static const String energySavingTips = 'assets/images/energy_saving_tips.png';
 }

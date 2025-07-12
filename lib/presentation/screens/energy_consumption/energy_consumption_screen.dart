@@ -1,6 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:power_pro_app/core/network/api/api_service.dart';
+import 'package:power_pro_app/core/network/api/dio_consumer.dart';
+import 'package:power_pro_app/core/network/cache/cache_helper.dart';
 import 'package:power_pro_app/core/utils/color/app_color.dart';
 import 'package:power_pro_app/core/utils/images/app_images.dart';
+import 'package:power_pro_app/core/utils/videos/app_videos.dart';
 import 'package:power_pro_app/core/widgets/container_color_widget.dart';
 import 'package:power_pro_app/core/widgets/line_border.dart';
 import 'package:power_pro_app/core/widgets/sizedbox_height.dart';
@@ -11,9 +16,50 @@ import 'package:power_pro_app/presentation/screens/energy_consumption/widget/lis
 import 'package:power_pro_app/presentation/screens/home/widget/bottom_bar.dart';
 import 'package:power_pro_app/presentation/screens/home/widget/image_power__pro.dart';
 import 'package:power_pro_app/presentation/screens/home/widget/send_message.dart';
+import 'package:power_pro_app/presentation/screens/more/energy_saving_tips/widget/video_player_widget.dart';
+import 'package:power_pro_app/presentation/screens/more/energy_sources/data/model.dart';
+import 'package:power_pro_app/presentation/screens/more/energy_sources/energy_sources_screen.dart';
+import 'package:power_pro_app/presentation/screens/more/energy_sources/ontap_energy_sources_screen.dart';
+import 'package:power_pro_app/presentation/screens/more/energy_sources/widget/box_data_widget.dart';
 
-class EnergyConsumptionScreen extends StatelessWidget {
+class EnergyConsumptionScreen extends StatefulWidget {
   const EnergyConsumptionScreen({super.key});
+
+  @override
+  State<EnergyConsumptionScreen> createState() =>
+      _EnergyConsumptionScreenState();
+}
+
+class _EnergyConsumptionScreenState extends State<EnergyConsumptionScreen> {
+  bool _isLoading = true;
+  List<EnergySource> _energySources = [];
+  String _errorMessage = '';
+
+  final ApiService _apiService = ApiService(
+    apiConsumer: DioConsumer(dio: Dio()),
+    cacheHelper: CacheHelper(),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchEnergySources();
+  }
+
+  Future<void> _fetchEnergySources() async {
+    try {
+      final response = await _apiService.getEnergySourcesData();
+      setState(() {
+        _energySources = response;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = "Error: $e";
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +91,9 @@ class EnergyConsumptionScreen extends StatelessWidget {
                     color: AppColor.textColorHint,
                   ),
                   SizedboxHeight(h: 15),
-                  Container(width: 340, height: 340, color: AppColor.white),
+                  VideoPlayerWidget(
+                    videoPath: 'assets/videos/energy_saving_tips.mp4',
+                  ),
                   SizedboxHeight(h: 25),
                   Center(
                     child: TextDefulte(
@@ -56,25 +104,67 @@ class EnergyConsumptionScreen extends StatelessWidget {
                     ),
                   ),
                   SizedboxHeight(h: 30),
-                  SizedBox(
-                    height: 220,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder:
-                          (context, index) => ImagePowerPro(
-                            dataTitle: "Comprehensive and integrated",
-                            sizeTitle: 10,
-                            fontWeightTitle: FontWeight.w700,
-                            colorTitle: AppColor.primaryBlack,
-                            dataDesc:
-                                "Power Pro offers everything you need about energy in one place, from essential information on types of energy, to practical tips, and effective energy solutions.",
-                            sizeDesc: 7,
-                            fontWeightDesc: FontWeight.w500,
-                            colorDesc: AppColor.primaryBlack,
-                          ),
+                  if (_isLoading)
+                    Center(child: CircularProgressIndicator())
+                  else
+                    SizedBox(
+                      height: 230,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5 + 1, // إضافة 1 لزر "عرض المزيد"
+                        itemBuilder: (context, index) {
+                          if (index == 5) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => EnergySourcesScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.add_circle_outline,
+                                  color: AppColor.blue,
+                                  size: 40,
+                                ),
+                              ),
+                            );
+                          } else {
+                            final energySource = _energySources[index];
+                            return BoxDataWidget(
+                              imageUrl: energySource.coverImage,
+                              name: energySource.name,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => OntapEnergySourcesScreen(
+                                          imageUrl: energySource.coverImage,
+                                          name: energySource.name,
+                                          description: energySource.description,
+                                          advantages: energySource.advantages,
+                                          dailyUses: energySource.dailyUses,
+                                          howItWorksDescription:
+                                              energySource
+                                                  .howItWorksDescription,
+                                          howItWorksImage:
+                                              energySource.howItWorksImage,
+                                        ),
+                                  ),
+                                );
+                              },
+                            );
+                          }
+                        },
+                      ),
                     ),
-                  ),
                   SizedboxHeight(h: 30),
                   TextDefulte(
                     data: "Energy Consumption Calculator",
@@ -114,7 +204,6 @@ class EnergyConsumptionScreen extends StatelessWidget {
                     ],
                   ),
                   SizedboxHeight(h: 20),
-
                   SizedBox(
                     height: 260,
                     child: ListView.builder(
@@ -130,10 +219,8 @@ class EnergyConsumptionScreen extends StatelessWidget {
                       },
                     ),
                   ),
-
                   SizedboxHeight(h: 20),
                   SendMessage(),
-                  // SizedboxHeight(h: 80),
                 ],
               ),
             ),

@@ -81,13 +81,9 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       SizedboxHeight(h: 30),
-                      TwxtWidget(
-                        title: "Email Address",
-                        data: "Yasomhmd@gmail.com",
-                      ),
 
                       SizedboxHeight(h: 30),
-                      TwxtWidget(title: "User Name", data: "Yasomhmd"),
+                      TwxtWidget(title: "Full Name", data: "Ibrahim El-Hewaty"),
 
                       SizedboxHeight(h: 30),
                       TwxtWidget(title: "Password", data: "********"),

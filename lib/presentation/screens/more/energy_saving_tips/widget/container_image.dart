@@ -1,18 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:power_pro_app/core/utils/color/app_color.dart';
+import 'package:power_pro_app/core/widgets/text_defulte.dart';
 
 class ContainerImage extends StatelessWidget {
   final String image;
   final bool? isInfinite;
   final double? width;
-  const ContainerImage({super.key, required this.image, this.isInfinite, this.width});
+  final Function()? onTap;
+  final String? title;
+  const ContainerImage({
+    super.key,
+    required this.image,
+    this.isInfinite,
+    this.width,
+    this.onTap,
+    this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      
-      child: Image.asset(image, fit: BoxFit.cover,
-          width: isInfinite == true ? double.infinity:width),
-      
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextDefulte(
+                data: title ?? "",
+                size: 18,
+                fontWeight: FontWeight.w700,
+                color: AppColor.textColor,
+                maxLines: 1,
+              ),
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(
+                12,
+              ), // Adds rounded corners to the image
+              child: Image.network(
+                image,
+                fit: BoxFit.cover,
+                width:
+                    isInfinite == true
+                        ? double.infinity
+                        : width ??
+                            200.0, // Ensures a default size if width is not provided
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

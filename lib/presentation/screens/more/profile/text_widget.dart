@@ -17,7 +17,7 @@ class TwxtWidget extends StatelessWidget {
       children: [
         TextDefulte(
           data: title,
-          size: 14,
+          size: 18,
           fontWeight: FontWeight.w500,
           color: AppColor.blue,
         ),
@@ -30,7 +30,7 @@ class TwxtWidget extends StatelessWidget {
             children: [
               TextDefulte(
                 data: data,
-                size: 12,
+                size: 16,
                 fontWeight: FontWeight.w400,
                 color: AppColor.textColor,
               ),

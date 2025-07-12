@@ -7,10 +7,13 @@ import 'package:power_pro_app/presentation/screens/energy_consumption/energy_con
     show EnergyConsumptionScreen;
 import 'package:power_pro_app/presentation/screens/home/widget/bottom_bar.dart';
 import 'package:power_pro_app/presentation/screens/splash/splash_screen.dart';
+import 'package:power_pro_app/service_locator.dart';
 
 import 'presentation/screens/home/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupServiceLocator();
   debugPaintSizeEnabled = false;
   runApp(const MyApp());
 }
@@ -38,7 +41,7 @@ class MainScreen extends StatelessWidget {
     EnergyConsumptionScreen(),
     BlogScreen(),
     ContactScreen(),
-    Placeholder(), 
+    Placeholder(),
   ];
 
   @override

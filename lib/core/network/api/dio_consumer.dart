@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
-
-import 'dart:convert';
-
 import 'package:power_pro_app/core/network/api/api_consumer.dart';
 import 'package:power_pro_app/core/network/api/api_end_point.dart';
 import 'package:power_pro_app/core/network/api/api_interceptors.dart';
+import 'package:power_pro_app/core/network/cache/cache_helper.dart';
 import 'package:power_pro_app/core/network/errors/exceptions.dart';
-
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
@@ -39,10 +36,14 @@ class DioConsumer extends ApiConsumer {
         data:
             isFormData ? FormData.fromMap(data as Map<String, dynamic>) : data,
         options: Options(
-          headers:
-              isFormData
-                  ? {'Content-Type': 'multipart/form-data'}
-                  : {'Content-Type': 'application/json'},
+          headers: {
+            
+            'Content-Type':
+                isFormData ? 'multipart/form-data' : 'application/json',
+            "Authorization":
+            
+                "Bearer ${CacheHelper().getData(key: 'token') ?? ''}",
+          },
         ),
       );
       return response.data;
@@ -61,11 +62,49 @@ class DioConsumer extends ApiConsumer {
   }) async {
     try {
       final response = await dio.post(
-        ApiEndPoint.signIn,
-
-        data: jsonEncode(data),
+        path,
+        data:
+            isFormData ? FormData.fromMap(data as Map<String, dynamic>) : data,
         queryParameters: queryParameters,
-        options: Options(headers: {'Content-Type': 'application/json'}),
+        options: Options(
+          headers: {
+            'Content-Type':
+                isFormData ? 'multipart/form-data' : 'application/json',
+            "Authorization":
+                "Bearer ${CacheHelper().getData(key: 'token') ?? ''}",
+          },
+        ),
+      );
+
+      return response.data;
+    } on DioException catch (e) {
+      handleDioExceptions(e);
+    }
+  }
+
+    // Added PUT method
+  @override
+  Future put(
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    bool isFormData = false,
+    Options? options,
+  }) async {
+    try {
+      final response = await dio.put(
+        path,
+        data:
+            isFormData ? FormData.fromMap(data as Map<String, dynamic>) : data,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: {
+            'Content-Type':
+                isFormData ? 'multipart/form-data' : 'application/json',
+            "Authorization":
+                "Bearer ${CacheHelper().getData(key: 'token') ?? ''}",
+          },
+        ),
       );
 
       return response.data;
